@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="How SEC 401.2 project test cases and correct answers are created.">
+    <title>Creating Test Cases · SEC 401.2</title>
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container header-row">
+        <a class="site-title" href="index.html">SEC 401.2 Artificial Intelligence</a>
+        <nav aria-label="Main navigation">
+          <a href="projects.html">Projects</a>
+          <a class="active" href="method.html">Method</a>
+          <a href="plan.html">Plan &amp; grading</a>
+          <a href="index.html#submission">Submission</a>
+          <a href="index.html#announcements">Announcements</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="container reading-page">
+      <section class="intro compact">
+        <p class="eyebrow"><a href="index.html">Course project</a> / Method</p>
+        <h1>How the test cases are created</h1>
+        <p class="lead">The small program supplies the answer key. It is an ordinary fixed-rule program, not another AI model.</p>
+      </section>
+
+      <section>
+        <h2>The basic idea</h2>
+        <p>First create a small spatial arrangement or temporal structure whose answer is known. Then present that same case to a model in Turkish, English, or as an image.</p>
+
+        <div class="case-flow" aria-label="The experiment moves from a structured case to several matched presentations and then to model answers and scoring.">
+          <div><strong>Base case</strong><span>relations and correct answer</span></div>
+          <div aria-hidden="true">→</div>
+          <div><strong>Matched versions</strong><span>Turkish · English · image</span></div>
+          <div aria-hidden="true">→</div>
+          <div><strong>Model responses</strong><span>saved without editing</span></div>
+          <div aria-hidden="true">→</div>
+          <div><strong>Results</strong><span>accuracy and errors</span></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>A spatial example</h2>
+        <p>Begin with an arrangement:</p>
+        <pre class="structured-case">B is one square west of G.
+J is one square south of B.</pre>
+
+        <p>Select two entities and ask:</p>
+        <blockquote>Where is G relative to J?</blockquote>
+        <p>The correct answer is <strong>northeast</strong>.</p>
+
+        <p>The same case can now be written in matched forms.</p>
+        <p><strong>Turkish</strong></p>
+        <blockquote lang="tr">B, G'nin bir kare batısındadır. J, B'nin bir kare güneyindedir. G, J'nin hangi yönündedir?</blockquote>
+        <p><strong>English</strong></p>
+        <blockquote>B is one square west of G. J is one square south of B. In which direction is G from J?</blockquote>
+
+        <div class="rule-note">
+          <strong>Valid spatial cases.</strong> Each stated relation is a one-cell movement. After the movements are combined, the queried entities must be on the same row, the same column, or an exact diagonal. Overlaps and unequal horizontal–vertical offsets are not used.
+        </div>
+      </section>
+
+      <section>
+        <h2>What the program does</h2>
+        <ol>
+          <li>Store a case as simple relations rather than natural-language sentences.</li>
+          <li>Apply the spatial or temporal rules.</li>
+          <li>Check that the case has a valid answer.</li>
+          <li>Record the question, correct answer, and a stable case identifier.</li>
+          <li>Create the Turkish, English, and any additional experimental versions from that same case.</li>
+        </ol>
+
+        <p>The model receives the natural-language text or image. The answer program receives the structured case. The answer program does not need to understand Turkish, call an LLM, or judge an explanation.</p>
+      </section>
+
+      <section>
+        <h2>Temporal cases</h2>
+        <p>The same principle applies to temporal questions. Begin with events and their known before-and-after relations. The program orders the events or checks the requested temporal relation.</p>
+        <p>If the facts allow several answers, the case is excluded unless “cannot be determined” is deliberately included as an answer. The program must not silently choose one possible order.</p>
+      </section>
+
+      <section>
+        <h2>From pilot to full experiment</h2>
+        <ol>
+          <li>Use 5–10 cases to test the answer program, prompts, model access, and automatic scoring.</li>
+          <li>Correct implementation problems found during the pilot.</li>
+          <li>Fix the cases, conditions, prompts, and model settings.</li>
+          <li>Run every planned condition on the full set. The default minimum is 50 base cases.</li>
+          <li>Keep every raw response, including incorrect and invalid responses.</li>
+        </ol>
+        <p>Do not remove difficult cases after seeing the model results.</p>
+      </section>
+
+      <section>
+        <h2>Reference</h2>
+        <p><a href="https://doi.org/10.1609/aaai.v36i10.21383">StepGame</a> uses this general approach to generate multi-step spatial questions. Its published example shows how an arrangement is converted into a story, question, and answer.</p>
+        <figure>
+          <img src="https://raw.githubusercontent.com/ShiZhengyan/StepGame/main/Figure/FrontExample.png" alt="StepGame example showing a spatial arrangement, selected entities, a natural-language story, a question, and the answer.">
+          <figcaption>
+            Shi, Zhang, and Lipani, “StepGame: A New Benchmark for Robust Multi-Hop Spatial Reasoning in Texts,” AAAI 2022.
+            <a href="https://doi.org/10.1609/aaai.v36i10.21383">Paper</a> ·
+            <a href="https://github.com/ShiZhengyan/StepGame">Code and data</a>
+          </figcaption>
+        </figure>
+      </section>
+
+      <p class="page-end"><a href="plan.html">Continue to the project plan →</a></p>
+    </main>
+
+    <footer>
+      <div class="container">
+        SEC 401.2 Artificial Intelligence · ALKU Computer Engineering
+      </div>
+    </footer>
+  </body>
+</html>

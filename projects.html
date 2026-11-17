@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Project options for SEC 401.2 Artificial Intelligence.">
+    <title>Project Options · SEC 401.2</title>
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container header-row">
+        <a class="site-title" href="index.html">SEC 401.2 Artificial Intelligence</a>
+        <nav aria-label="Main navigation">
+          <a class="active" href="projects.html">Projects</a>
+          <a href="method.html">Method</a>
+          <a href="plan.html">Plan &amp; grading</a>
+          <a href="index.html#submission">Submission</a>
+          <a href="index.html#announcements">Announcements</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="container">
+      <section class="intro compact">
+        <p class="eyebrow"><a href="index.html">Course project</a> / Project options</p>
+        <h1>Project options</h1>
+        <p class="lead">Choose one area and decide what your group wants to compare. Several groups may choose the same area, but each group prepares and runs its own experiment.</p>
+      </section>
+
+      <nav class="page-toc" aria-label="Projects on this page">
+        <a href="#spatial">1. Spatial reasoning</a>
+        <a href="#temporal">2. Temporal reasoning</a>
+        <a href="#visual">3. Text and diagram reasoning</a>
+        <a href="#own-project">4. Propose your own project</a>
+      </nav>
+
+      <article class="project" id="spatial">
+        <p class="eyebrow">Project 1 · LLM</p>
+        <h2>Spatial reasoning</h2>
+        <p><strong>Question:</strong> How well can a model combine several spatial relations?</p>
+
+        <h3>Task</h3>
+        <p>Create arrangements involving people or objects. Relations may include north, south, east, west, and the four diagonal directions. Ask for the direction of one entity relative to another. Every base case must have matched Turkish and English versions.</p>
+
+        <div class="rule-note">
+          <strong>Direction rule.</strong> Every stated relation is an exact one-cell movement. After the relations are combined, the queried entities must be on the same row, the same column, or an exact diagonal. Exclude overlaps and unequal offsets such as five squares west and one square north.
+        </div>
+
+        <div class="examples">
+          <h3>Examples</h3>
+
+          <h4>Example 1 — combining three relations</h4>
+          <p><strong>Turkish</strong></p>
+          <blockquote lang="tr">Mert sabit bir noktadadır. Elif, Mert'in bir kare kuzeyindedir. Can, Elif'in bir kare doğusundadır. Zeynep, Can'ın bir kare güneyindedir. Zeynep, Mert'e göre hangi yöndedir? Yalnızca yönün adını yaz.</blockquote>
+          <p><strong>English</strong></p>
+          <blockquote>Mert is at a fixed point. Elif is one square north of Mert. Can is one square east of Elif. Zeynep is one square south of Can. In which direction is Zeynep from Mert? Write only the direction.</blockquote>
+          <p><strong>Answer:</strong> <span lang="tr">doğu</span> / east</p>
+
+          <h4>Example 2 — equivalent Turkish expressions</h4>
+          <blockquote lang="tr">Ece, Deniz'in bir kare batısındadır.</blockquote>
+          <blockquote lang="tr">Deniz'in bir kare batısında Ece bulunmaktadır.</blockquote>
+          <p>The relation is unchanged. A group may use complete matched questions to test whether this wording change affects the model.</p>
+
+          <h4>Example 3 — adding an irrelevant relation</h4>
+          <p>The first example can be repeated after adding a fact such as:</p>
+          <blockquote lang="tr">Derya, Kerem'in bir kare güneyindedir.</blockquote>
+          <p>The added relation does not involve the queried entities, so the correct answer remains <span lang="tr">doğu</span> / east.</p>
+        </div>
+
+        <h3>Possible questions</h3>
+        <ul>
+          <li>Does accuracy change with the number of relations needed for the answer?</li>
+          <li>What happens when relation sentences are ordered, reversed, or shuffled?</li>
+          <li>Do irrelevant relations change the answer?</li>
+          <li>Does reversing an expression, such as “A is north of B” to “B is south of A,” affect accuracy?</li>
+          <li>Which Turkish word orders, spellings, or expressions cause different results?</li>
+        </ul>
+        <p>Choose one main question. You may propose another spatial-language question in the <a href="plan.html">project plan</a>.</p>
+      </article>
+
+      <article class="project" id="temporal">
+        <p class="eyebrow">Project 2 · LLM</p>
+        <h2>Temporal reasoning</h2>
+        <p><strong>Question:</strong> Can a model recover event order when events are described indirectly or mentioned in a different order?</p>
+
+        <h3>Task</h3>
+        <p>Create problems using events, dates, or before-and-after relations. The simplest version asks the model to order events. Other versions may study date arithmetic, reported speech, incomplete information, or states that change over time.</p>
+
+        <div class="rule-note">
+          <strong>One answer must be justified.</strong> The answer program must check whether the supplied facts determine one answer. If several answers are possible, exclude the case or make “cannot be determined” part of the task.
+        </div>
+
+        <div class="examples">
+          <h3>Examples</h3>
+
+          <h4>Example 1 — ordering arrivals</h4>
+          <p><strong>Turkish</strong></p>
+          <blockquote lang="tr">Burcu laboratuvara Ali'den önce geldi. Deniz, Cem'den sonra geldi. Cem, Ali'den sonra fakat Deniz'den önce geldi. Dört kişiyi laboratuvara geliş sırasına göre en erkenden en geç olana doğru yaz.</blockquote>
+          <p><strong>English</strong></p>
+          <blockquote>Burcu arrived at the laboratory before Ali. Deniz arrived after Cem. Cem arrived after Ali but before Deniz. List the four people from the earliest to the latest arrival.</blockquote>
+          <p><strong>Answer:</strong> Burcu → Ali → Cem → Deniz</p>
+
+          <h4>Example 2 — equivalent temporal expressions</h4>
+          <blockquote lang="tr">Sunum başlamadan önce Ayşe salona girdi.</blockquote>
+          <blockquote lang="tr">Ayşe salona girdikten sonra sunum başladı.</blockquote>
+          <p>Both sentences place Ayşe's arrival before the start of the presentation.</p>
+
+          <h4>Example 3 — information that is not sufficient</h4>
+          <blockquote lang="tr">Ali, Cem'den önce geldi. Burcu da Cem'den önce geldi. İlk kim geldi?</blockquote>
+          <blockquote>Ali arrived before Cem. Burcu also arrived before Cem. Who arrived first?</blockquote>
+          <p><strong>Answer:</strong> cannot be determined. The facts do not establish whether Ali or Burcu arrived first.</p>
+        </div>
+
+        <h3>Possible questions</h3>
+        <ul>
+          <li>How does the number of events affect accuracy?</li>
+          <li>What changes when events are mentioned chronologically, in reverse, or in shuffled order?</li>
+          <li>Do different Turkish temporal constructions produce different answers?</li>
+          <li>Can the model identify questions with insufficient information?</li>
+          <li>How well does the model track states that change across a sequence of events?</li>
+        </ul>
+        <p>Choose one main question. You may propose another temporal question in the <a href="plan.html">project plan</a>.</p>
+      </article>
+
+      <article class="project" id="visual">
+        <p class="eyebrow">Project 3 · VLM</p>
+        <h2>Text and diagram reasoning</h2>
+        <p><strong>Question:</strong> Does a VLM answer differently when the same spatial problem is given as text or as a diagram?</p>
+
+        <h3>Task</h3>
+        <p>Create each spatial scene once, then produce its Turkish text, English text, and PNG diagram from the same scene data. Use the same VLM in every presentation condition. The experimental diagrams must be actual images, not ASCII text.</p>
+        <p>Unless map orientation is the factor being studied, keep north at the top and show a visible north arrow.</p>
+
+        <div class="examples">
+          <h3>Example</h3>
+
+          <p><strong>Turkish text</strong></p>
+          <blockquote lang="tr">Ada, Bora'nın bir kare batısındadır. Ceren, Bora'nın bir kare güneyindedir. Ada, Ceren'e göre hangi yöndedir? Yalnızca yönün adını yaz.</blockquote>
+
+          <p><strong>English text</strong></p>
+          <blockquote>Ada is one square west of Bora. Ceren is one square south of Bora. In which direction is Ada from Ceren? Write only the direction.</blockquote>
+
+          <p><strong>Diagram</strong></p>
+          <figure class="example-figure">
+            <img src="assets/example-diagram.svg" alt="A diagram with Ada west of Bora, Ceren south of Bora, and a north arrow pointing upward.">
+            <figcaption>The image, Turkish text, and English text describe the same scene.</figcaption>
+          </figure>
+
+          <p><strong>Answer in every format:</strong> <span lang="tr">kuzeybatı</span> / northwest</p>
+        </div>
+
+        <h3>Possible questions</h3>
+        <ul>
+          <li>How do Turkish text, English text, image, and text-with-image conditions compare?</li>
+          <li>Do simple and cluttered diagrams produce different results?</li>
+          <li>What happens when the observer's viewpoint changes?</li>
+          <li>How does a rotated map or compass arrow affect the answer?</li>
+          <li>Can visual perception errors be distinguished from spatial reasoning errors?</li>
+        </ul>
+        <p>Choose one main question. You may propose another text–image question in the <a href="plan.html">project plan</a>.</p>
+      </article>
+
+      <article class="project" id="own-project">
+        <p class="eyebrow">Project 4 · LLM or VLM</p>
+        <h2>Propose your own project</h2>
+        <p>You may propose a different project related to reasoning with LLMs or VLMs. It should investigate a specific ability that can be tested systematically; it should not be a general chatbot or application-development project.</p>
+
+        <h3>Required structure</h3>
+        <ul>
+          <li>a clear research question;</li>
+          <li>test cases with correct or checkable answers;</li>
+          <li>matched Turkish and English versions, or another justified set of matched conditions;</li>
+          <li>the same base cases across the compared conditions;</li>
+          <li>a fixed scoring rule with correct/total counts and accuracy;</li>
+          <li>error analysis based on the complete results;</li>
+          <li>a scope that is feasible with the available models and computing resources.</li>
+        </ul>
+
+        <p>Possible directions include another kind of spatial or temporal reasoning, Turkish logical or quantitative reasoning, alternative diagram or structured representations, or a cross-lingual reasoning task. These examples do not limit what may be proposed.</p>
+
+        <div class="rule-note">
+          <strong>Proposal deadline:</strong> Submit the <a href="plan.html">project plan</a> no later than <strong>1 December 2026</strong>. Approval is required before producing the full test set.
+        </div>
+      </article>
+
+      <section class="closing-note">
+        <h2>Before producing the full test set</h2>
+        <p>Read <a href="method.html">How the test cases are created</a> and complete the <a href="plan.html">project plan</a>. Run a pilot with 5–10 cases, correct implementation problems, and then keep the test set, prompts, and settings fixed for the full experiment.</p>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        SEC 401.2 Artificial Intelligence · ALKU Computer Engineering
+      </div>
+    </footer>
+  </body>
+</html>

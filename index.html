@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="SEC 401.2 course project on spatial and temporal reasoning with language and vision-language models.">
+    <title>SEC 401.2 Course Project</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <script src="content/site-content.js" defer></script>
+    <script src="assets/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container header-row">
+        <a class="site-title" href="index.html">SEC 401.2 Artificial Intelligence</a>
+        <nav aria-label="Main navigation">
+          <a href="projects.html">Projects</a>
+          <a href="method.html">Method</a>
+          <a href="plan.html">Plan &amp; grading</a>
+          <a href="#submission">Submission</a>
+          <a href="#announcements">Announcements</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="container">
+      <section class="intro">
+        <p class="eyebrow">ALKU · Department of Computer Engineering</p>
+        <h1>Course project</h1>
+        <p class="lead">LLM and VLM reasoning in Turkish and English</p>
+        <p>Groups of 2–3 students will choose one of the three listed project areas or propose another project. Each group will prepare test questions with known answers, evaluate language or vision-language models, and report the results.</p>
+
+        <dl class="project-meta">
+          <div><dt>Status</dt><dd>Optional bonus project</dd></div>
+          <div><dt>Group size</dt><dd>2–3 students</dd></div>
+          <div><dt>Deadline</dt><dd>To be discussed and announced in class</dd></div>
+          <div><dt>Submission</dt><dd>One GitHub repository per group</dd></div>
+        </dl>
+
+        <ul class="quick-links" aria-label="Start here">
+          <li><a href="projects.html">Read the project options</a></li>
+          <li><a href="method.html">See how test cases are created</a></li>
+          <li><a href="plan.html">Prepare the project plan</a></li>
+        </ul>
+      </section>
+
+      <section id="overview">
+        <h2>The experiment</h2>
+        <p>Choose one project area and one main question. The result must come from a fixed test set evaluated under every planned condition, not from a few selected prompts.</p>
+
+        <ol>
+          <li><strong>Create base cases.</strong> Store the underlying spatial arrangement, event structure, or visual scene in a form that a small fixed-rule program can use.</li>
+          <li><strong>Prepare matched versions.</strong> Write every case in standard Turkish and equivalent English. Add only the other version needed for the group's comparison.</li>
+          <li><strong>Run a pilot.</strong> Use 5–10 cases to check the program, prompts, model access, answer scoring, and cost.</li>
+          <li><strong>Fix the experiment.</strong> After the pilot, keep the test cases, conditions, prompts, and settings unchanged. The default minimum is 50 base cases.</li>
+          <li><strong>Run and record.</strong> Evaluate all planned cases and retain the complete, unedited model responses.</li>
+          <li><strong>Measure and explain.</strong> Report accuracy for every model and condition, then examine repeated errors.</li>
+        </ol>
+
+        <p>Complete the <a href="plan.html">project plan</a> before producing the full test set. A different test-set size requires approval in the plan.</p>
+      </section>
+
+      <section id="projects">
+        <div class="section-heading">
+          <h2>Project options</h2>
+          <a href="projects.html">Examples and full descriptions</a>
+        </div>
+
+        <ol class="project-list">
+          <li>
+            <h3><a href="projects.html#spatial">Spatial reasoning</a></h3>
+            <p>Combine several relations and study the effects of language, sentence order, irrelevant information, or Turkish expression.</p>
+          </li>
+          <li>
+            <h3><a href="projects.html#temporal">Temporal reasoning</a></h3>
+            <p>Recover event order from before-and-after relations, indirect descriptions, changing states, or incomplete information.</p>
+          </li>
+          <li>
+            <h3><a href="projects.html#visual">Text and diagram reasoning</a></h3>
+            <p>Give the same spatial scene to a VLM as Turkish text, English text, a diagram, or text with a diagram.</p>
+          </li>
+          <li>
+            <h3><a href="projects.html#own-project">Propose your own project</a></h3>
+            <p>Propose another specific LLM or VLM reasoning task using checkable answers and controlled comparisons.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section id="models">
+        <h2>Choosing models</h2>
+        <p>Choose a small number of models that the group can run consistently. Record the exact model names, versions, access method, prompts, and settings.</p>
+        <p>Possible Turkish or Turkish-adapted models include models from <a href="https://huggingface.co/ytu-ce-cosmos/models">COSMOS</a>, <a href="https://huggingface.co/Trendyol">Trendyol</a>, <a href="https://huggingface.co/TURKCELL/Turkcell-LLM-7b-v1">Turkcell</a>, <a href="https://huggingface.co/WiroAI">WiroAI</a>, <a href="https://huggingface.co/vngrs/Kumru-2B">Kumru</a>, <a href="https://huggingface.co/asafaya/kanarya-2b">Kanarya</a>, and <a href="https://github.com/metunlp/llamaturk">METU NLP's LlamaTurk</a>. Multilingual model families include Qwen, Gemma, Llama, and Mistral. This is neither a required list nor a ranking.</p>
+        <p>For text projects, a Turkish model and a multilingual model form a useful comparison. Another combination is acceptable if it fits the research question. For the visual project, use the same VLM in every presentation condition; <a href="https://huggingface.co/Trendyol/Trendyol-LLM-Asure-12B">Trendyol Asure</a> is one possible VLM.</p>
+      </section>
+
+      <section id="results">
+        <h2>Results</h2>
+        <p>For every model and condition, report:</p>
+        <ul>
+          <li>number correct and total;</li>
+          <li>accuracy;</li>
+          <li>number of missing, invalid, or unscorable answers.</li>
+        </ul>
+        <p>Invalid answers remain in the total and receive a score of incorrect. For tasks with a fixed answer set, report the number of cases for each correct label. If the labels are not reasonably balanced, also report the accuracy obtained by always choosing the most frequent label.</p>
+        <p>Define and test the automatic scoring rule before the full run. A label must not be accepted merely because it occurs inside another label, such as <em>kuzey</em> inside <em>kuzeybatı</em>. Do not repair model responses by hand.</p>
+        <p>Because conditions use the same base cases, also identify which cases change from correct to incorrect and from incorrect to correct. Group repeated errors into a few categories and use representative examples to explain the numerical results.</p>
+      </section>
+
+      <section id="improvement">
+        <h2>Further investigation <span class="heading-note">optional</span></h2>
+        <p>After the main experiment and error analysis, the group may test a method intended to improve the result. Possible directions include changing the prompt, providing selected examples, requesting an intermediate representation, using a calculation tool, changing the data or presentation, or fine-tuning an open-weight model with LoRA or QLoRA.</p>
+        <p>This list is not exhaustive. Explain why the method was chosen and compare it with the original result on the same unchanged test set. Report decreases and failed attempts as well as improvements.</p>
+      </section>
+
+      <section id="submission">
+        <h2>Submission</h2>
+        <p>Submit one GitHub repository per group. The repository's <code>README.md</code> is the final report; a separate PDF is not required.</p>
+
+        <h3>README</h3>
+        <p>Write a concise paper-style report containing:</p>
+        <ul>
+          <li>title, group members, and video link;</li>
+          <li>abstract and research question;</li>
+          <li>brief related work;</li>
+          <li>test set and method;</li>
+          <li>models, prompts, settings, and scoring rule;</li>
+          <li>results and error analysis;</li>
+          <li>optional improvement study, if conducted;</li>
+          <li>conclusion, limitations, and references;</li>
+          <li>a short statement describing any use of AI assistants.</li>
+        </ul>
+
+        <h3>Repository contents</h3>
+        <p>Include the base cases, correct answers, Turkish and English versions, code, prompts, unedited responses, scored results, figures or tables, and instructions for reproducing the experiment.</p>
+
+        <h3>Video</h3>
+        <p>Prepare a 5–10 minute video. Every group member must appear on camera and explain part of the work. Show the research question, the answer program, the main results, one error, and the conclusion. Place an accessible video link near the top of the README; do not commit the video file to GitHub.</p>
+
+        <h3>Final submission</h3>
+        <p>The repository must be public, or the instructor must have access before the deadline. Submit its URL through the course submission link.</p>
+        <dl class="pending-items">
+          <div><dt>Submission link</dt><dd>To be discussed and announced in class</dd></div>
+          <div><dt>Deadline</dt><dd>To be discussed and announced in class</dd></div>
+          <div><dt>Bonus conversion</dt><dd>To be discussed and announced in class</dd></div>
+        </dl>
+
+        <p>See the <a href="plan.html#grading">grading table</a>. The optional improvement study is not required for full credit. A submission without the required video is incomplete.</p>
+      </section>
+
+      <section id="announcements">
+        <div class="section-heading">
+          <h2>Announcements</h2>
+          <span class="muted" data-announcement-updated></span>
+        </div>
+        <div class="announcement-list" data-announcement-list>
+          <p>Announcements are loading.</p>
+        </div>
+      </section>
+
+      <section id="faq">
+        <h2>Frequently asked questions</h2>
+        <div class="faq-list" data-faq-list>
+          <p>Questions are loading.</p>
+        </div>
+      </section>
+
+      <section id="reading">
+        <h2>Starting references</h2>
+        <p>Read the papers relevant to the selected project. Reproducing every paper is not required.</p>
+
+        <h3>Spatial and visual reasoning</h3>
+        <ul class="references">
+          <li><a href="https://doi.org/10.1609/aaai.v36i10.21383">StepGame</a></li>
+          <li><a href="https://arxiv.org/abs/2511.02627">DecompSR</a></li>
+          <li><a href="https://arxiv.org/abs/2410.17385">COMFORT</a></li>
+          <li><a href="https://aclanthology.org/2024.acl-long.261/">SpaRC and SpaRP</a></li>
+          <li><a href="https://aclanthology.org/2024.emnlp-main.947/">SpatialPrompt</a></li>
+        </ul>
+
+        <h3>Temporal reasoning</h3>
+        <ul class="references">
+          <li><a href="https://aclanthology.org/2026.eacl-srw.67/">TimeRes</a></li>
+          <li><a href="https://aclanthology.org/2024.acl-long.563/">Large Language Models Can Learn Temporal Reasoning</a></li>
+          <li><a href="https://aclanthology.org/2024.findings-emnlp.963/">Narrative-of-Thought</a></li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        SEC 401.2 Artificial Intelligence · ALKU Computer Engineering
+      </div>
+    </footer>
+  </body>
+</html>
